@@ -33,9 +33,54 @@ function validaCadastro(evt) {
         caixa_email.style.display = 'block'
         contErro += 1
     } else if (filtro.test(email.value)) {
+        caixa_email.style.display = 'none'
+    } else {
+        caixa_email.innerHTML = 'Formato do e-mail é inválido!'
         caixa_email.style.display = 'block'
+        contErro += 1
     }
 
+    // validação da caixa campo sexo
+    caixa_genero = document.querySelector('.msg-genero')
+    if (sexo.value == '') {
+        caixa_genero.innerHTML = 'Por favor, indique o gênero'
+        caixa_genero.style.display = 'block'
+        contErro += 1
+    } else {
+        caixa_genero.style.display = 'none'
+    }
+
+    // Validação do campo senha
+    caixa_senha = document.querySelector('.msg-senha')
+    if (senha.value == '') {
+        caixa_senha.innerHTML = 'Por favor, preencha o campo senha.'
+        caixa_senha.style.display = 'block'
+        contErro += 1
+    } else if (senha.value.length < 6) {
+        caixa_senha.innerHTML =
+            'Por favor, preencha a senha com no mínino de 6 caracteres.'
+        caixa_senha.style.display = 'block'
+        contErro += 1
+    } else {
+        caixa_senha.style.display = 'none'
+    }
+
+    // Validação do campo repita a senha
+    caixa_senha2 = document.querySelector('.msg-senha2')
+    if (senha2.value == '') {
+        caixa_senha2.innerHTML = 'Por favor, preencha o campo repita a senha'
+        caixa_senha2.style.display = 'block'
+        contErro += 1
+    } else {
+        caixa_senha2.style.display = 'none'
+    }
+
+    // Validação do campo senha se for igual ao campo repita senha
+    if (senha.value != "" && senha2.value != "" && senha.value != senha2.value) {
+        caixa_senha2.innerHTML = 'O campo repita a senha é diferente do campo senha.'
+        caixa_senha2.style.display = 'block'
+        contErro += 1
+    }
     if (contErro > 0) {
         evt.preventDefault();
     }
